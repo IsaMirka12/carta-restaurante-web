@@ -1,0 +1,147 @@
+
+    :root {
+    --rojo-oscuro: #9E1B1B;
+    --rojo-claro: #D93E30;
+    --beige: #FDEDE4;
+    --blanco: #ffffff;
+    --gris-claro: #f8f9fa;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .navbar-custom {
+    background-color: var(--blanco);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar-custom .nav-link {
+    color: var(--rojo-oscuro);
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-custom .nav-link:hover {
+    color: var(--rojo-claro);
+  }
+
+.logo-header {
+  height: 80px;
+  max-height: 90px;
+  width: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+  .hero-section {
+    background-color: var(--beige);
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .hero-section h1 {
+    color: var(--rojo-oscuro);
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 0.5rem;
+  }
+
+  .footer-custom {
+    background-color: var(--rojo-oscuro);
+    color: var(--blanco);
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-custom a {
+    color: var(--beige);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .footer-custom a:hover {
+    color: var(--blanco);
+    text-decoration: underline;
+  }
+
+  .footer-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .logo-footer {
+    max-width: 140px;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-brand img,
+    .logo-footer {
+      max-width: 100px;
+    }
+
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+
+    .hero-section p {
+      font-size: 1rem;
+    }
+  }
+
+
+  .top-banner {
+  background-color: var(--rojo-oscuro);
+  color: var(--blanco);
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 999;
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+  font-size: 16px
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+  
+
+  .boton-agregar {
+    background-color: var(--rojo-oscuro);
+    border: none;
+    color: var(--blanco);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
