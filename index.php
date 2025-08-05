@@ -1,10 +1,4 @@
-<?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-
+<?php require_once __DIR__. './conexion/conexion.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,7 +44,6 @@ error_reporting(E_ALL);
                     style="max-width: 250px; font-size: 0.9rem;">
               <option value=""> Filtrar por categoría </option>
               <?php
-              include './conexion/conexion.php';
               $catQuery = "SELECT id, nombre FROM categorias";
               $resultCat = $conexion->query($catQuery);
               while ($cat = $resultCat->fetch_assoc()) {
@@ -67,7 +60,6 @@ error_reporting(E_ALL);
   <section class="hero-section">
       <div class="container">
           <?php
-              include ('./conexion/conexion.php');
               include ("./componentes/test.php");
           ?>
       </div>

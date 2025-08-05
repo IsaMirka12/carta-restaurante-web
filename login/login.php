@@ -1,7 +1,7 @@
 
 
 <?php 
-include('../conexion/conexion.php');
+include __DIR__.'/../conexion/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = trim($_POST['email'] ?? '');

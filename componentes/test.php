@@ -1,34 +1,45 @@
 <?php
 
 $productosPorPagina = 8;
-$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$paginaActual = isset($_GET['pagina']) ? max((int)$_GET['pagina'], 1) : 1;
 $offset = ($paginaActual - 1) * $productosPorPagina;
 
-$categoriaFiltrada = isset($_GET['categoria']) ? $_GET['categoria'] : null;
+$categoriaFiltrada = isset($_GET['categoria']) ? (int)$_GET['categoria'] : null;
 
 if ($categoriaFiltrada) {
-    $sqlTotal = "SELECT COUNT(*) as total FROM productos WHERE categoria_id = ? AND estado = 1";
-    $stmtTotal = $conexion->prepare($sqlTotal);
+    // Total de productos filtrados por categoría
+    $stmtTotal = $conexion->prepare("SELECT COUNT(*) as total FROM productos WHERE categoria_id = ? AND estado = 1");
     $stmtTotal->bind_param("i", $categoriaFiltrada);
     $stmtTotal->execute();
-    $total = $stmtTotal->get_result()->fetch_assoc()['total'];
+    $resultadoTotal = $stmtTotal->get_result();
+    $total = $resultadoTotal->fetch_assoc()['total'] ?? 0;
+    $stmtTotal->close();
 
-    $sql = "SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen
-            FROM productos p
-            WHERE p.categoria_id = ? AND p.estado = 1
-            LIMIT ? OFFSET ?";
-    $stmt = $conexion->prepare($sql);
+    // Productos filtrados
+    $stmt = $conexion->prepare("
+        SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen
+        FROM productos p
+        WHERE p.categoria_id = ? AND p.estado = 1
+        LIMIT ? OFFSET ?
+    ");
     $stmt->bind_param("iii", $categoriaFiltrada, $productosPorPagina, $offset);
     $stmt->execute();
     $resultado = $stmt->get_result();
 } else {
-    $total = $conexion->query("SELECT COUNT(*) as total FROM productos WHERE estado = 1")->fetch_assoc()['total'];
+    // Total sin filtro
+    $resultadoTotal = $conexion->query("SELECT COUNT(*) as total FROM productos WHERE estado = 1");
+    $total = $resultadoTotal->fetch_assoc()['total'] ?? 0;
 
-    $sql = "SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen
-            FROM productos p
-            WHERE p.estado = 1
-            LIMIT $productosPorPagina OFFSET $offset";
-    $resultado = $conexion->query($sql);
+    // Productos sin filtro
+    $stmt = $conexion->prepare("
+        SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen
+        FROM productos p
+        WHERE p.estado = 1
+        LIMIT ? OFFSET ?
+    ");
+    $stmt->bind_param("ii", $productosPorPagina, $offset);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 }
 
 $totalPaginas = ceil($total / $productosPorPagina);
@@ -36,37 +47,33 @@ $totalPaginas = ceil($total / $productosPorPagina);
 
 <div class="container py-4">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <?php
-    if ($resultado->num_rows > 0) {
-        while ($fila = $resultado->fetch_assoc()) {
-    ?>
-    <div class="col">
-      <div class="card h-100 shadow-sm border-0 rounded-4 mx-auto" style="max-width: 16rem;">
-        <img src="<?= $fila['imagen']; ?>"
-             class="card-img-top rounded-top"
-             style="height: 180px; object-fit: cover;"
-             alt="Imagen de producto">
-        <div class="card-body d-flex flex-column text-center px-3">
-          <h5 class="card-title text-danger fw-bold mb-2"><?= $fila["nombre"]; ?></h5>
-          <p class="card-text text-muted flex-grow-1 small"><?= $fila["descripcion"]; ?></p>
-          <p class="card-text fw-semibold text-success fs-6 mt-2 mb-3">S/ <?= $fila["precio"]; ?></p>
+    <?php if ($resultado && $resultado->num_rows > 0): ?>
+        <?php while ($fila = $resultado->fetch_assoc()): ?>
+        <div class="col">
+          <div class="card h-100 shadow-sm border-0 rounded-4 mx-auto" style="max-width: 16rem;">
+            <img src="<?= htmlspecialchars($fila['imagen']) ?>"
+                 class="card-img-top rounded-top"
+                 style="height: 180px; object-fit: cover;"
+                 alt="<?= htmlspecialchars($fila['nombre']) ?>">
+            <div class="card-body d-flex flex-column text-center px-3">
+              <h5 class="card-title text-danger fw-bold mb-2"><?= htmlspecialchars($fila["nombre"]) ?></h5>
+              <p class="card-text text-muted flex-grow-1 small"><?= htmlspecialchars($fila["descripcion"]) ?></p>
+              <p class="card-text fw-semibold text-success fs-6 mt-2 mb-3">S/ <?= number_format($fila["precio"], 2) ?></p>
 
-          <form class="forAgregar mt-auto" method="post">
-            <input type="hidden" name="id" value="<?= $fila['id'] ?>">
-            <input type="hidden" name="precio" value="<?= $fila['precio'] ?>">
-            <button type="submit" class="btn btn-outline-danger btn-sm w-100 fw-semibold">
-              Agregar
-            </button>
-          </form>
+              <form class="forAgregar mt-auto" method="post">
+                <input type="hidden" name="id" value="<?= $fila['id'] ?>">
+                <input type="hidden" name="precio" value="<?= $fila['precio'] ?>">
+                <button type="submit" class="btn btn-outline-danger btn-sm w-100 fw-semibold">
+                  Agregar
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <?php
-        }
-    } else {
-        echo "<p class='text-center'>No se encontraron productos.</p>";
-    }
-    ?>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p class="text-center">No se encontraron productos.</p>
+    <?php endif; ?>
   </div>
 </div>
 
@@ -102,10 +109,12 @@ $totalPaginas = ceil($total / $productosPorPagina);
     <?php endif; ?>
   </ul>
 </nav>
-
 <?php endif; ?>
 
-<?php $conexion->close(); ?>
+<?php
+$stmt?->close();
+$conexion->close();
+?>
 
 <script>
 const arrCarrito = [];
