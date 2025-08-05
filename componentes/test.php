@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $productosPorPagina = 8;
 $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
