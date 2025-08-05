@@ -49,7 +49,7 @@ error_reporting(E_ALL);
                     style="max-width: 250px; font-size: 0.9rem;">
               <option value=""> Filtrar por categoría </option>
               <?php
-              include '../miProyecto/conexion/conexion.php';
+              include './conexion/conexion.php';
               $catQuery = "SELECT id, nombre FROM categorias";
               $resultCat = $conexion->query($catQuery);
               while ($cat = $resultCat->fetch_assoc()) {
