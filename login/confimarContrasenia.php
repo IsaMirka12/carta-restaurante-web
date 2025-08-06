@@ -206,6 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             echo "<script>alertify.success('Contraseña actualizada correctamente');</script>";
+            
             $stmt->close();
 
       

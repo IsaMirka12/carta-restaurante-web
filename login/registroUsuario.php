@@ -250,6 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
 
         $mail->send();
+        echo "<script>alertify.success('Gracias por registrarte. Te hemos enviado un correo para continuar.');</script>";
     } catch (Exception $e) {
         echo "<script>alertify.error('No se pudo enviar el correo. Error: {$mail->ErrorInfo}');</script>";
     }

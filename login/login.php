@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nombre'] = $usuario['nombres'];
             $_SESSION['rol'] = $usuario['rol'];
           if ($usuario['rol'] === 'admin') {
-              header("Location: ../../miProyecto/administrador/principal.php");
+              header("Location: ../administrador/principal.php");
           } else {
-              header("Location: /miProyecto/carrito.php");
+              header("Location: ../carrito.php");
           }
           exit;
         } else {
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
   <div class="container-fluid px-4">
 
-    <a class="navbar-brand" href="../../miProyecto/index.php">
+    <a class="navbar-brand" href="../index.php">
     <img src="https://i.postimg.cc/Ph866nvv/7734086.jpg" alt="Logo" class="logo-header">
     </a>
 
