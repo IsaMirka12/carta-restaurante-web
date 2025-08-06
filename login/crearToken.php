@@ -16,8 +16,9 @@ function registrarUsuario($id){
     "sub" => $id
 ];
 
+ global $clave;
 
-$jwt = JWT::encode($payload, $jwts, 'HS256');
+$jwt = JWT::encode($payload, $clave, 'HS256');
 
 
 

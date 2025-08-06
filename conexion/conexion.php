@@ -12,7 +12,8 @@ if (!isset($conexion) || !$conexion instanceof mysqli || !$conexion->ping()) {
     $contrasena = $_ENV['DB_PASS'] ?? '';
     $base_datos = $_ENV['DB_NAME'] ?? '';
     $ssl_ca_env = $_ENV['DB_SSL_CA'] ?? '';
-    $jwts = $_ENV['JWT_SECRET'];
+
+     $clave = $_ENV['JWT_SECRET'];
 
     $ssl_ca = $ssl_ca_env ? realpath(__DIR__ . "/.." . $ssl_ca_env) : '';
 

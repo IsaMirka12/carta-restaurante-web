@@ -134,9 +134,10 @@ require_once '../libs/JWT/Key.php';
 require_once '../libs/JWT/JWT.php';
 include '../conexion/conexion.php';
 
+ global $clave;
+
 
 $token = $_GET['token'] ?? null;
-
 if (!$token || $token === 'null' || substr_count($token, '.') !== 2) {
     echo "<script>alertify.error('El Token no es válido o no existe');</script>";
     exit;
@@ -144,7 +145,7 @@ if (!$token || $token === 'null' || substr_count($token, '.') !== 2) {
 
 try {
 
-    $decoded = JWT::decode($token, new Key($jwts, 'HS256'));
+    $decoded = JWT::decode($token, new Key($clave, 'HS256'));
     $sql = "SELECT estado FROM tokens WHERE token= ?";
     $stmt = $conexion->prepare($sql);
     if (!$stmt) throw new Exception("Error al preparar la consulta: " . $conexion->error);
