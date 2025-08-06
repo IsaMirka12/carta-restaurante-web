@@ -1,6 +1,6 @@
 <?php
 require '../libs/JWT/JWT.php';
-require '../conexion/conexion.php'
+require '../conexion/conexion.php';
 
 use Firebase\JWT\JWT;
 
@@ -9,8 +9,8 @@ use Firebase\JWT\JWT;
 function registrarUsuario($id){
     $expiracion = time() + 3600;
     $payload = [
-    "iss" => "http://localhost",
-    "aud" => "http://localhost",
+    "iss" => "https://carta-restaurante-web.onrender.com",
+    "aud" => "https://carta-restaurante-web.onrender.com",
     "iat" => time(),
     "exp" => $expiracion, 
     "sub" => $id
