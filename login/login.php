@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="https://i.postimg.cc/Bv4bSbnx/logo.webp" type="image/x-icon">
     <title>Iniciar sesión</title> 
 </head>
 <body>
@@ -73,10 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="collapse navbar-collapse justify-content-between" id="menu">
     <ul class="navbar-nav ms-auto me-4 text-uppercase">
-        <li class="nav-item"><a class="nav-link" href="/miProyecto/index.php">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/miProyecto/nosotros.php">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="/miProyecto/carrito.php"><i class="bi bi-cart-plus"></i> mi pedido</a></li>
-        <li class="nav-item"><a class="nav-link" href="/miProyecto/login/login.php"><i class="bi bi-person-add"></i></a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="../nosotros.php">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="../carrito.php"><i class="bi bi-cart-plus"></i> mi pedido</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login.php"><i class="bi bi-person-add"></i></a></li>
     </ul>
     </div>
   </div>
@@ -118,8 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="col-md-4 mb-4">
         <h5 class="footer-title">Enlaces rápidos</h5>
         <ul class="list-unstyled">
-          <li><a href="/miProyecto/index.php">Inicio</a></li>
-          <li><a href="/miProyecto/carrito.php">Mi Pedido</a></li>
+          <li><a href="../index.php">Inicio</a></li>
+          <li><a href="../carrito.php">Mi Pedido</a></li>
         </ul>
       </div>
 

@@ -13,6 +13,7 @@ use Firebase\JWT\ExpiredException;
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="https://i.postimg.cc/Bv4bSbnx/logo.webp" type="image/x-icon">
     <title>Confirmar Registro</title>
 </head>
 <body>
@@ -32,10 +33,10 @@ use Firebase\JWT\ExpiredException;
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="menu">
       <ul class="navbar-nav ms-auto me-4 text-uppercase">
-          <li class="nav-item"><a class="nav-link" href="/index.php">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="/nosotros.php">Nosotros</a></li>
-          <li class="nav-item"><a class="nav-link" href="/carrito.php"><i class="bi bi-cart-plus"></i> mi pedido</a></li>
-          <li class="nav-item"><a class="nav-link" href="/login/login.php"><i class="bi bi-person-add"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../nosotros.php">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="../carrito.php"><i class="bi bi-cart-plus"></i> mi pedido</a></li>
+          <li class="nav-item"><a class="nav-link" href="/login.php"><i class="bi bi-person-add"></i></a></li>
       </ul>
       </div>
     </div>
@@ -74,15 +75,7 @@ use Firebase\JWT\ExpiredException;
     </div>
   </div>
 </div>
-
-    
-
-
-  </section>
-
-
-
-
+</section>
 <footer class="footer-custom">
   <div class="container px-4">
     <div class="row">
@@ -93,8 +86,8 @@ use Firebase\JWT\ExpiredException;
       <div class="col-md-4 mb-4">
         <h5 class="footer-title">Enlaces rápidos</h5>
         <ul class="list-unstyled">
-          <li><a href="/index.php">Inicio</a></li>
-          <li><a href="/carrito.php">Mi Pedido</a></li>
+          <li><a href="../index.php">Inicio</a></li>
+          <li><a href="../carrito.php">Mi Pedido</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-4">

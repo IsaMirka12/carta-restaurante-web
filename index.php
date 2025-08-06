@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="https://i.postimg.cc/Bv4bSbnx/logo.webp" type="image/x-icon">
     <title>Menu Inicial</title> 
 </head>
 <body>
@@ -76,8 +77,8 @@
       <div class="col-md-4 mb-4">
         <h5 class="footer-title">Enlaces rápidos</h5>
         <ul class="list-unstyled">
-          <li><a href="/miProyecto/index.php">Inicio</a></li>
-          <li><a href="/miProyecto/carrito.php">Mi Pedido</a></li>
+          <li><a href="/index.php">Inicio</a></li>
+          <li><a href="/carrito.php">Mi Pedido</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-4">
