@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-danger fw-semibold py-2 fs-6">Ingresar</button>
           </div>
           <div class="text-center">
-            <a href="../../miProyecto/login/registroUsuario.php" class="text-decoration-none small fw-semibold">¿No tienes cuenta?</a>
+            <a href="/registroUsuario.php" class="text-decoration-none small fw-semibold">¿No tienes cuenta?</a>
           </div>
         </form>
       </div>

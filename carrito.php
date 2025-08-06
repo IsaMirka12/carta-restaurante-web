@@ -11,7 +11,7 @@
     <link rel="icon" href="https://i.postimg.cc/Bv4bSbnx/logo.webp" type="image/x-icon">
     <title>Carrito de compras</title> 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div class="top-banner d-none d-md-block">
     <div class="marquee">
         <span><b>Bienvenido a Korean-Food la mejor experiencia de comida coreana en Perú 🇰🇷✨</span>
@@ -40,69 +40,77 @@
      include ('./conexion/conexion.php');
      ?>
    </div>
-<section class="hero-section">
-  <div class="container">
-    <div id="contenedor">
-         <?php
-                if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
-         ?>
-                <table class="table table-danger" id="productos">
-                    <thead>
-                        <tr>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Sub Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-           <?php
-                    $total=0;
-                    foreach ($_SESSION['carrito'] as $producto) { ?>
-                    <tr>
-                        <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
-                        <input type="hidden" id="precio<?php echo $producto['id']; ?>" value="<?php echo $producto['precio']; ?>">
-                        <td><input type="number" class="form-control text-center p-1 contCantidad"
-                            id="<?php echo "cantidad".$producto['id']; ?>"
-                            data-id="<?php echo $producto['id'];?>" style="width: 60px; height: 40px;"
-                            value="<?php echo $producto['cantidad']; ?>" min="0"></td>
-                        <td> <?php echo $producto['nombre']; ?> </td>
-                        <td> <img src='<?php echo $producto['imagen']; ?> ' class="img-thumbnail" style="width: 80px; height: 80px" alt="imagen pequeña" >  </td>
-                        <td> <?php echo $producto['precio']; ?>  </td>
-                        <td>  <input type='number' disabled class="form-control text-end" id="<?php echo "subtotal".$producto['id']; ?>" value="<?php echo $producto['precio'] * $producto['cantidad']; ?>" > </td>
-                    </tr>
-                    <?php $total=$total+($producto['precio'] * $producto['cantidad']); ?>
-                <?php    }
-            
-                } else {
-                    echo "<p>El carrito está vacío.</p>";
-                }
-            ?>    
-            </tbody>
-        </table>
-    </div>
-    <div class="d-flex justify-content-end align-items-center my-3">
-        <h2 class="me-3">Total</h2>
-        <input type="number" id="total" class="form-control text-end" disabled style="width: 150px;" value="<?php echo $total ?? 0; ?>">
-    </div>
-    <form class="forAgregarPedido">
-        <input type="hidden" name="id"     value="<?= $producto['id']; ?>">
-        <input type="hidden" name="precio" value="<?= $producto['precio']; ?>">
-        <input type="hidden" name="total" value="<?php $total=$total+($producto['precio'] * $producto['cantidad']); ?>">
-        <input type="hidden" name="cantida" value="<?= $producto['cantidad'] ?>">
-        <?php
-            if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
-                <button type="submit" 
-                    class='btn btn-danger btn-sm w-50 fw-semibold rounded-pill shadow-sm btn-agregar-pedido'>
-                    Confirmar Pedido 
-                </button>
-        <?php  } ?>
+  <main class=" flex-grow-1">
+    <<section class="hero-section py-5">
+        <div class="container">
+            <div id="contenedor">
+                <?php
+                        if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+                ?>
+                        <table class="table table-danger" id="productos">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Sub Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                <?php
+                            $total=0;
+                            foreach ($_SESSION['carrito'] as $producto) { ?>
+                            <tr>
+                                <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
+                                <input type="hidden" id="precio<?php echo $producto['id']; ?>" value="<?php echo $producto['precio']; ?>">
+                                <td><input type="number" class="form-control text-center p-1 contCantidad"
+                                    id="<?php echo "cantidad".$producto['id']; ?>"
+                                    data-id="<?php echo $producto['id'];?>" style="width: 60px; height: 40px;"
+                                    value="<?php echo $producto['cantidad']; ?>" min="0"></td>
+                                <td> <?php echo $producto['nombre']; ?> </td>
+                                <td> <img src='<?php echo $producto['imagen']; ?> ' class="img-thumbnail" style="width: 80px; height: 80px" alt="imagen pequeña" >  </td>
+                                <td> <?php echo $producto['precio']; ?>  </td>
+                                <td>  <input type='number' disabled class="form-control text-end" id="<?php echo "subtotal".$producto['id']; ?>" value="<?php echo $producto['precio'] * $producto['cantidad']; ?>" > </td>
+                            </tr>
+                            <?php $total=$total+($producto['precio'] * $producto['cantidad']); ?>
+                        <?php    }
+                    
+                        } else {
 
-    </form>
-  </div>
-</section>
-<footer class="footer-custom">
+                        ?>
+                           <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 60vh;">
+                                <i class="bi bi-cart-x display-1 text-muted"></i>
+                                <p class="fs-4 mt-3">El carrito está vacío.</p>
+                            </div>
+                        <?php }
+                    ?>    
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end align-items-center my-3">
+                <h2 class="me-3">Total</h2>
+                <input type="number" id="total" class="form-control text-end" disabled style="width: 150px;" value="<?php echo $total ?? 0; ?>">
+            </div>
+            <form class="forAgregarPedido">
+                <input type="hidden" name="id"     value="<?= $producto['id']; ?>">
+                <input type="hidden" name="precio" value="<?= $producto['precio']; ?>">
+                <input type="hidden" name="total" value="<?php $total=$total+($producto['precio'] * $producto['cantidad']); ?>">
+                <input type="hidden" name="cantida" value="<?= $producto['cantidad'] ?>">
+                <?php
+                    if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
+                        <button type="submit" 
+                            class='btn btn-danger btn-sm w-50 fw-semibold rounded-pill shadow-sm btn-agregar-pedido'>
+                            Confirmar Pedido 
+                        </button>
+                <?php  } ?>
+
+            </form>
+        </div>
+        </section>
+  </main>
+
+<footer class="footer-custom mt-auto">
   <div class="container px-4">
     <div class="row">
       <div class="col-md-4 mb-4">
@@ -270,7 +278,7 @@ document.querySelector('.forAgregarPedido').addEventListener('submit', function 
 
     if (!usuarioLogueado) {
     alertify.alert("Inicia sesión", "Necesitas estar logueado como cliente para confirmar el pedido.", function () {
-        window.location.href = "../miProyecto/login/login.php";
+        window.location.href = "/login/login.php";
     });
     return;
     }
