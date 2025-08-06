@@ -1,9 +1,8 @@
 <?php
 
-// Solo abrir conexión si aún no existe
+
 if (!isset($conexion) || !$conexion instanceof mysqli || !$conexion->ping()) {
 
-    // Cargar las variables de entorno
     require_once __DIR__ . '/cargar_env.php';
     cargarEnv(__DIR__ . '/../.env');
 
@@ -13,11 +12,10 @@ if (!isset($conexion) || !$conexion instanceof mysqli || !$conexion->ping()) {
     $contrasena = $_ENV['DB_PASS'] ?? '';
     $base_datos = $_ENV['DB_NAME'] ?? '';
     $ssl_ca_env = $_ENV['DB_SSL_CA'] ?? '';
+    $jwts = $_ENV['JWT_SECRET'];
 
-    // Resolver ruta absoluta al archivo .pem
     $ssl_ca = $ssl_ca_env ? realpath(__DIR__ . "/.." . $ssl_ca_env) : '';
 
-    // Inicializar conexión
     $conexion = mysqli_init();
 
     if ($ssl_ca && file_exists($ssl_ca)) {
