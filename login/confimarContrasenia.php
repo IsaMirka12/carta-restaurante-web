@@ -36,7 +36,7 @@ use Firebase\JWT\ExpiredException;
           <li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="../nosotros.php">Nosotros</a></li>
           <li class="nav-item"><a class="nav-link" href="../carrito.php"><i class="bi bi-cart-plus"></i> mi pedido</a></li>
-          <li class="nav-item"><a class="nav-link" href="/login.php"><i class="bi bi-person-add"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/login/login.php"><i class="bi bi-person-add"></i></a></li>
       </ul>
       </div>
     </div>

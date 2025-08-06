@@ -19,7 +19,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container-fluid px-4">
-        <a class="navbar-brand" href="/miProyecto/index.php">
+        <a class="navbar-brand" href="/index.php">
         <img src="https://i.postimg.cc/Ph866nvv/7734086.jpg" alt="Logo" class="logo-header">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
